@@ -1,0 +1,25 @@
+{
+    "editor.tabSize": 4,
+    "eslint.validate": [
+        { "language": "javascript", "autoFix": true },
+        { "language": "javascriptreact", "autoFix": true },
+        { "language": "vue", "autoFix": true },
+    ],
+    "eslint.options": {
+        "ignorePattern": [
+            "dist",
+            "node_modules",
+            "__build__",
+        ]
+    },
+    "eslint.autoFixOnSave": true,
+    "csscomb.preset": {},
+    "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+    },
+}
