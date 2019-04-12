@@ -50,5 +50,7 @@ module.exports = {
         //判断无等号
         'padded-blocks': 0,
         'no-useless-escape': 0,
+        'vue/html-indent': [2, 4],
+        'vue/script-indent': [2, 4],
     }
 }

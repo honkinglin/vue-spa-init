@@ -15,7 +15,12 @@ module.exports = function webpackBaseConfig (DEPLOY_ENV = 'release') {
         resolve: {
             extensions: ['.js', '.vue', '.json'],
             alias: {
-                '@': resolve('src')
+                '@': resolve('src'),
+                'utils': resolve('src/utils'),
+                'store': resolve('src/assets'),
+                'assets': resolve('src/assets'),
+                'constants': resolve('src/constants'),
+                'components': resolve('src/components'),
             }
         },
         devtool: config.devtool,
@@ -30,7 +35,7 @@ module.exports = function webpackBaseConfig (DEPLOY_ENV = 'release') {
                     test: /\.(jpe?g|png|gif|webp)$/,
                     loader: 'url-loader',
                     query: {
-                        limit: 10000,
+                        limit: 8000,
                         publicPath: config.publicPath,
                         outputPath: config.imgPath,
                         useRelativePath: false,
@@ -44,7 +49,7 @@ module.exports = function webpackBaseConfig (DEPLOY_ENV = 'release') {
                         resolve('src', 'components', 'svg', 'icons')
                     ],
                     query: {
-                        limit: 10000,
+                        limit: 8000,
                         publicPath: config.publicPath,
                         outputPath: 'fonts/',
                         useRelativePath: false,

@@ -2,8 +2,9 @@ const merge = require('webpack-merge');
 
 const { resolve } = require('./utils');
 
-const config = require('../config/local');
-const webpackBaseConfig = require('./webpack.base.conf')('local');
+const DEPLOY_ENV = 'local';
+const config = require('../config')(DEPLOY_ENV);
+const webpackBaseConfig = require('./webpack.base.conf')(DEPLOY_ENV);
 
 const filenameHash = config.filenameHash;
 
@@ -50,7 +51,7 @@ const webpackConfig = merge(webpackBaseConfig, {
         historyApiFallback: true,
         disableHostCheck: true,
         open: true,
-        proxy: {}
+        proxy: config.proxyTarget || {},
     }
 });
 

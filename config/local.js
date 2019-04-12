@@ -1,9 +1,7 @@
-const merge = require('webpack-merge');
-const master = require('./master');
-
-module.exports = merge(master, {
+module.exports = {
     //开发 devServer 端口
     port: 9999,
+    proxyTarget: '', // 代理地址
 
     constants: {
         NODE_ENV: JSON.stringify('development'),
@@ -16,4 +14,4 @@ module.exports = merge(master, {
     eslint: true,
     //生成带hash文件名
     filenameHash: false
-});
+};
