@@ -9,7 +9,7 @@ module.exports = {
     devtool: false, //or source-map
     eslint: false,
     //静态资源cdn地址
-    publicPath: '/',
+    publicPath: '',
     //类型静态资源访问路径
     jsPath: 'js/',
     cssPath: 'css/',

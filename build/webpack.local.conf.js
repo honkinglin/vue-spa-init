@@ -22,7 +22,7 @@ const webpackConfig = merge(webpackBaseConfig, {
     module: {
         rules: [
             {
-                test: /\.(scss|css)$/,
+                test: /\.(scss|sass|css)$/,
                 use: [
                     { loader: 'style-loader' },
                     { loader: 'css-loader?sourceMap' },
@@ -36,7 +36,8 @@ const webpackConfig = merge(webpackBaseConfig, {
                 exclude: /(node_modules)/,
                 options: {
                     loaders: {
-                        scss: 'vue-style-loader!css-loader!sass-loader'
+                        scss: 'vue-style-loader!css-loader!postcss-loader!sass-loader',
+                        sass: 'vue-style-loader!css-loader!postcss-loader!sass-loader'
                     }
                 }
             }
@@ -45,13 +46,15 @@ const webpackConfig = merge(webpackBaseConfig, {
     plugins: [
     ],
     devServer: {
+        inline: true,
+        hot: true,
         compress: true,
         host: '0.0.0.0',
         port: config.port,
         historyApiFallback: true,
         disableHostCheck: true,
         open: true,
-        proxy: config.proxyTarget || {},
+        proxy: config.proxy
     }
 });
 

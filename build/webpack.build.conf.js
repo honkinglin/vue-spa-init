@@ -19,18 +19,28 @@ const webpackConfig = merge(webpackBaseConfig, {
         chunkFilename: filenameHash ? `${config.jsPath}[name].[chunkhash].js` : `${config.jsPath}[name].js?[chunkhash]`, // for the require.ensure
         publicPath: config.publicPath
     },
+    stats: {
+        children: false
+    },
     performance: {
-        hints: 'warning'
+        hints: 'warning',
+        maxEntrypointSize: 1000000, // 500kib
+        maxAssetSize: 1000000
     },
     module: {
         rules: [
             {
-                test: /\.(scss|css)$/,
+                test: /\.(scss|sass|css)$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader'
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: config.publicPath
+                        }
+                    },
+                    { loader: 'css-loader' },
+                    { loader: 'postcss-loader' },
+                    { loader: 'sass-loader' }
                 ]
             },
             {
@@ -39,7 +49,8 @@ const webpackConfig = merge(webpackBaseConfig, {
                 exclude: /(node_modules)/,
                 options: {
                     loaders: {
-                        scss: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+                        scss: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+                        sass: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
                     }
                 }
             }
@@ -49,7 +60,7 @@ const webpackConfig = merge(webpackBaseConfig, {
         new MiniCssExtractPlugin({
             filename: filenameHash ? `${config.cssPath}[name].[contenthash].css` : `${config.cssPath}[name].css?[contenthash]`
         }),
-        new OptimizeCSSAssetsPlugin(),
+        new OptimizeCSSAssetsPlugin()
     ]
 });
 

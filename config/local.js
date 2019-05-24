@@ -1,7 +1,12 @@
 module.exports = {
     //开发 devServer 端口
     port: 9999,
-    proxyTarget: '', // 代理地址
+    proxy: {
+        context: ['/api'],
+        target: '', // 代理地址
+        secure: false,
+        changeOrigin: true
+    },
 
     constants: {
         NODE_ENV: JSON.stringify('development'),
